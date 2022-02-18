@@ -12,10 +12,7 @@ namespace TestProject1
             Seven,
             Prime
         }
-
-        internal static Stack<int> GetNextGreaterValue(Stack<int> sourceStack)
-        {
-
+        /*
             Stack<int> result = new Stack<int>();
 
             Stack<int> Pila = new Stack<int>();
@@ -46,8 +43,27 @@ namespace TestProject1
                         result.Push(elementosResultado[i]);
                     }
                 }
+            }*/
+        internal static Stack<int> GetNextGreaterValue(Stack<int> sourceStack)
+        {
+
+            Stack<int> newstact = new Stack<int>();
+      
+            int v_m = 0;
+            while (sourceStack.Count != 0)
+            {
+                int  p = sourceStack.Pop();
+               if (p>v_m)
+                {
+                    v_m = p;
+                    newstact.Push(-1);
+                }
+                else
+                {
+                    newstact.Push(v_m);
+                }
             }
-            return result;
+            return newstact;
         }
 
         internal static Dictionary<int, EValueType> FillDictionaryFromSource(int[] sourceArr)
