@@ -15,8 +15,38 @@ namespace TestProject1
 
         internal static Stack<int> GetNextGreaterValue(Stack<int> sourceStack)
         {
-            Stack<int> result = null;
 
+            Stack<int> result = new Stack<int>();
+
+            Stack<int> Pila = new Stack<int>();
+
+            Pila.Push(5);
+            Pila.Push(6);
+            Pila.Push(3);
+            Pila.Push(26);
+
+            int[] elementosPila = Pila.ToArray();
+            int[] elementosResultado = result.ToArray();
+
+            for (int i = 0; i < elementosPila.Length; i++)
+            {
+                if (elementosPila[i + 1] > elementosPila[i])
+                {
+                    for (int j = 0; j < elementosResultado.Length; j++)
+                    {
+                        elementosResultado[i] = elementosPila[i + 1];
+                        result.Push(elementosResultado[i]);
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < elementosResultado.Length; j++)
+                    {
+                        elementosResultado[i] = -1;
+                        result.Push(elementosResultado[i]);
+                    }
+                }
+            }
             return result;
         }
 
