@@ -20,32 +20,33 @@ namespace TestProject1
 
             Stack<int> Pila = new Stack<int>();
 
-            Pila.Push(5);
-            Pila.Push(6);
-            Pila.Push(3);
-            Pila.Push(26);
-
             int[] elementosPila = Pila.ToArray();
             int[] elementosResultado = result.ToArray();
-
-            for (int i = 0; i < elementosPila.Length; i++)
+            int n = 1;
+            for (int i = elementosPila.Length-1; i >=0; i--)
             {
-                if (elementosPila[i + 1] > elementosPila[i])
+                while(n<elementosPila.Length-1)
                 {
-                    for (int j = 0; j < elementosResultado.Length; j++)
+                    if (elementosPila[i - n] > elementosPila[i])
                     {
-                        elementosResultado[i] = elementosPila[i + 1];
-                        result.Push(elementosResultado[i]);
+                        for (int j = elementosResultado.Length - 1; j >= 0; j--)
+                        {
+                            elementosResultado[i] = elementosPila[i - n];
+                            result.Push(elementosResultado[i]);
+                        }
                     }
-                }
-                else
-                {
-                    for (int j = 0; j < elementosResultado.Length; j++)
+                    else
                     {
-                        elementosResultado[i] = -1;
-                        result.Push(elementosResultado[i]);
+                        for (int j = elementosResultado.Length - 1; j >= 0; j--)
+                        {
+                            elementosResultado[i] = -1;
+                            result.Push(elementosResultado[i]);
+                        }
                     }
+                    n++;
                 }
+                
+               
             }
             return result;
         }
