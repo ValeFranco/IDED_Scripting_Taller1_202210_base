@@ -54,11 +54,25 @@ namespace TestProject1
         {
             Dictionary<int, EValueType> result = null;
 
+            //Lenar el diccionario
+
+            result.Add(4, EValueType.Two);
+            result.Add(35, EValueType.Five);
+            result.Add(119, EValueType.Seven);
+            result.Add(22, EValueType.Two);
+            result.Add(17, EValueType.Prime);
+            result.Add(27, EValueType.Three);
+            result.Add(205, EValueType.Five);
+
             return result;
         }
 
         internal static int CountDictionaryRegistriesWithValueType(Dictionary<int, EValueType> sourceDict, EValueType type)
         {
+            //foreach (KeyValuePair<int, EValueType> elemenetos in sourceDict)
+            //{
+
+            //}
             return 0;
         }
 
