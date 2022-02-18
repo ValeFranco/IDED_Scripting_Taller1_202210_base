@@ -1,2 +1,4 @@
-# Taller1_base
- Codigo base para Taller 1 Scripting IDED UPB 202210
+# Taller1
+ Integrantes equipo:
+ 1. Juan Esteban Ciceri
+ 2. Valentina Franco Avalos
