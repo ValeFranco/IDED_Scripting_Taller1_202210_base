@@ -48,25 +48,27 @@ namespace TestProject1
         {
 
             Stack<int> newstact = new Stack<int>();
-      
+            int[] bateria = sourceStack.ToArray();
             int v_m = 0;
-            while (sourceStack.Count != 0)
-            {
-                int  p = sourceStack.Pop();
-               if (p>v_m)
+            int a=0;
+            for (int i = 0; i < bateria.Length; i++)
+            { 
+                if (bateria[i] > v_m)
                 {
-                    v_m = p;
-                    newstact.Push(-1);
+                    v_m = bateria[i];
+                    bateria[i] = -1;
                 }
                 else
                 {
-                    newstact.Push(v_m);
+                    bateria[i] = v_m;
                 }
-=======
-                
-               
->>>>>>> 8a31ec43717e4d58abfaddadae20ed803bff19c9
+              
             }
+            for (int i = bateria.Length - 1; i >= 0; i--)
+            {
+                newstact.Push(bateria[i]);
+            }
+          
             return newstact;
         }
 

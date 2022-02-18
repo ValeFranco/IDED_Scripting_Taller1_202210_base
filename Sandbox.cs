@@ -16,16 +16,18 @@ namespace TestProject1
             numbers.Push(6);
             numbers.Push(5);
 
-       
-            numbers=TestMethods.GetNextGreaterValue(numbers);
-            while (numbers.Count != 0)
-            {
-                
-                int  p = numbers.Pop();
-                Console.WriteLine(p);
-                
-            }
 
+
+            Stack<int>  numbers1 =TestMethods.GetNextGreaterValue(numbers);
+
+            Console.WriteLine("el ultimo numero es " + numbers.Peek());
+            while (numbers1.Count != 0)
+            {
+                int  p = numbers1.Pop();
+                Console.WriteLine(p);
+            }
+            Console.WriteLine("Hello world");
+            
 
         }
     }    
