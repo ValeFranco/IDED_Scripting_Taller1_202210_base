@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 namespace TestProject1
 {
     internal class TestMethods
@@ -173,7 +173,32 @@ namespace TestProject1
         }
         internal static Queue<Ticket>[] ClassifyTickets(List<Ticket> sourceList)
         {
-            Queue<Ticket>[] result = null;
+            
+            Queue<Ticket> Payments = new Queue<Ticket>();
+            Queue<Ticket> Subscriptions = new Queue<Ticket>();
+            Queue<Ticket> Cancellations = new Queue<Ticket>();
+
+            List<Ticket> cualquiera = sourceList.OrderBy(x => x.Turn).ToList();
+            foreach (Ticket tikete in cualquiera)
+            {
+
+                if (tikete.RequestType ==Ticket.ERequestType.Payment)
+                {
+                    Payments.Enqueue(tikete);
+                }
+                else if (tikete.RequestType == Ticket.ERequestType.Subscription)
+                {
+                    Subscriptions.Enqueue(tikete);
+                }
+                else if (tikete.RequestType == Ticket.ERequestType.Cancellation)
+                {
+                    Cancellations.Enqueue(tikete);
+                }
+               
+                //Console.WriteLine("turno :" + tikete.Turn + " suscripcion " + tikete.RequestType);
+            }
+
+            Queue<Ticket>[] result = { Payments, Subscriptions, Cancellations };
 
             return result;
         }
