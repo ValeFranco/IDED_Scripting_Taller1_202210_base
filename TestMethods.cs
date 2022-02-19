@@ -123,11 +123,54 @@ namespace TestProject1
 
         internal static Dictionary<int, EValueType> SortDictionaryRegistries(Dictionary<int, EValueType> sourceDict)
         {
-            Dictionary<int, EValueType> result = null;
+            Dictionary<int, EValueType> result = new Dictionary<int, EValueType>();
+
+            int[] keys = new int[sourceDict.Count];
+            int i = 0;
+
+            foreach (int Key in sourceDict.Keys)
+            {
+                keys[i] = Key;
+                i++;
+            }
+
+            int[] keysOrdenadas = OrdenaArregloBurbuja(keys);
+
+            for (int j = keysOrdenadas.Length - 1; j >= 0; j--)
+            {
+               
+                foreach (int Key in sourceDict.Keys)
+                {
+                    if (keysOrdenadas[j] == Key)
+                    {
+                        result.Add(Key, sourceDict[Key]);
+                    }
+                }
+            }
 
             return result;
         }
-
+        static int[] OrdenaArregloBurbuja(int[] coleccion)
+        {
+            int[] Arregloordenado = coleccion;
+            int datoTemporal;
+            bool Dessordenado = true;
+            while (Dessordenado == true)
+            {
+                Dessordenado = false;
+                for (int i = 0; i < Arregloordenado.Length - 1; i++)
+                {
+                    if (Arregloordenado[i] > Arregloordenado[i + 1])
+                    {
+                        datoTemporal = Arregloordenado[i + 1];
+                        Arregloordenado[i + 1] = Arregloordenado[i];
+                        Arregloordenado[i] = datoTemporal;
+                        Dessordenado = true;
+                    }
+                }
+            }
+            return Arregloordenado;
+        }
         internal static Queue<Ticket>[] ClassifyTickets(List<Ticket> sourceList)
         {
             Queue<Ticket>[] result = null;
