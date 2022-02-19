@@ -110,11 +110,15 @@ namespace TestProject1
 
         internal static int CountDictionaryRegistriesWithValueType(Dictionary<int, EValueType> sourceDict, EValueType type)
         {
-            //foreach (KeyValuePair<int, EValueType> elemenetos in sourceDict)
-            //{
-
-            //}
-            return 0;
+            int contador = 0;
+            foreach (EValueType value in sourceDict.Values)
+            {
+                if (value == type)
+                {
+                    contador++;
+                }
+            }
+            return contador;
         }
 
         internal static Dictionary<int, EValueType> SortDictionaryRegistries(Dictionary<int, EValueType> sourceDict)
