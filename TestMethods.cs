@@ -206,7 +206,29 @@ namespace TestProject1
         internal static bool AddNewTicket(Queue<Ticket> targetQueue, Ticket ticket)
         {
             bool result = false;
+           
+            if (ticket.Turn>0 && ticket.Turn<100) {
 
+                foreach (Ticket lol in targetQueue)
+                {
+                    if (ticket.RequestType == lol.RequestType)
+                    {
+                        targetQueue.Enqueue(ticket);
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                    }
+                    break;
+                }
+               
+             
+            }
+            else
+            {
+                result = false;
+            }
             return result;
         }        
     }

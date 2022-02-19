@@ -24,10 +24,75 @@ namespace TestProject1
         };
 
             List<Ticket> cualquiera = testTicketElements.OrderBy(x => x.Turn).ToList();
-            foreach ( Ticket tikete in cualquiera)
+            foreach (Ticket tikete in cualquiera)
             {
-                Console.WriteLine("turno :"+ tikete.Turn + " suscripcion " + tikete.RequestType);
+
+                if (tikete.RequestType == Ticket.ERequestType.Payment)
+                {
+                    Payments.Enqueue(tikete);
+                }
+                else if (tikete.RequestType == Ticket.ERequestType.Subscription)
+                {
+                    Subscriptions.Enqueue(tikete);
+                }
+                else if (tikete.RequestType == Ticket.ERequestType.Cancellation)
+                {
+                    Cancellations.Enqueue(tikete);
+                }
+
+                //Console.WriteLine("turno :" + tikete.Turn + " suscripcion " + tikete.RequestType);
             }
+
+            Queue<Ticket>[] result = { Payments, Subscriptions, Cancellations };
+
+            for (int i =0; i<result.Length;i++)
+            {
+                foreach (Ticket lol in result[i])
+                {
+                    Console.WriteLine("turno :" + lol.Turn + " suscripcion " + lol.RequestType);
+                }
+
+            }
+            prueba(result[0], new Ticket(Ticket.ERequestType.Payment, 99));
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                foreach (Ticket lol in result[i])
+                {
+                    Console.WriteLine("turno :" + lol.Turn + " suscripcion " + lol.RequestType);
+                }
+
+            }
+
+        }
+         static bool prueba(Queue<Ticket> targetQueue, Ticket ticket)
+        {
+            bool result = false;
+
+            if (ticket.Turn > 0 && ticket.Turn < 100)
+            {
+
+                foreach (Ticket lol in targetQueue)
+                {
+                    if (ticket.RequestType == lol.RequestType)
+                    {
+                        targetQueue.Enqueue(ticket);
+                        result = true;
+                        Console.WriteLine("si sirve ");
+                    }
+                    else
+                    {
+                        result = false;
+                        Console.WriteLine("no se guarda ");
+                    }
+                    break;
+                }
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
         }
     }
         
