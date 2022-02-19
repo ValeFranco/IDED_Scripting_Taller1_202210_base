@@ -50,7 +50,6 @@ namespace TestProject1
             Stack<int> newstact = new Stack<int>();
             int[] bateria = sourceStack.ToArray();
             int v_m = 0;
-            int a=0;
             for (int i = 0; i < bateria.Length; i++)
             { 
                 if (bateria[i] > v_m)
@@ -74,17 +73,37 @@ namespace TestProject1
 
         internal static Dictionary<int, EValueType> FillDictionaryFromSource(int[] sourceArr)
         {
-            Dictionary<int, EValueType> result = null;
+            Dictionary<int, EValueType> result = new Dictionary<int, EValueType>();
 
             //Lenar el diccionario
+            for (int i = 0; i < sourceArr.Length; i++)
+            {
+                if (sourceArr[i] % 2 == 0)
+                {
+                    result.Add(sourceArr[i], EValueType.Two);
+                }
+                else
+                if (sourceArr[i] % 3 == 0)
+                {
+                    result.Add(sourceArr[i], EValueType.Three);
+                }
+                else
+                if (sourceArr[i] % 5 == 0)
+                {
+                    result.Add(sourceArr[i], EValueType.Five);
+                }
+                else
+                if (sourceArr[i] % 7 == 0)
+                {
+                    result.Add(sourceArr[i], EValueType.Seven);
+                }
+                else
+                {
+                    result.Add(sourceArr[i], EValueType.Prime);
+                }
 
-            result.Add(4, EValueType.Two);
-            result.Add(35, EValueType.Five);
-            result.Add(119, EValueType.Seven);
-            result.Add(22, EValueType.Two);
-            result.Add(17, EValueType.Prime);
-            result.Add(27, EValueType.Three);
-            result.Add(205, EValueType.Five);
+
+            }
 
             return result;
         }
